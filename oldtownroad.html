@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<style>
+  #oldTownRoad {
+    visibility: hidden;
+  }
+</style>
+<body>
+
+<button onclick="startGame();">START GAME</button><br>
+
+<audio id="oldTownRoad" controls>
+  <source src="oldtownroad.mp3" type="audio/mpeg">
+</audio> 
+
+<script>
+
+// REFERENCE (Fast-Forward): https://www.w3schools.com/tags/av_prop_currenttime.asp
+var mp3 = document.getElementById("oldTownRoad");
+mp3.currentTime = 9; // start mp3 at 9 seconds into song
+
+function startGame() {
+    mp3.play();
+}
+
+</script>
+</body>
+</html>
