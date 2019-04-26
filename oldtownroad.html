@@ -1,28 +1,94 @@
-<!DOCTYPE html>
-<html>
-<style>
-  #oldTownRoad {
-    visibility: hidden;
-  }
-</style>
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8" />
+    <title>Making your first Phaser 3 Game - Part 2</title>
+    <script src="//cdn.jsdelivr.net/npm/phaser@3.11.0/dist/phaser.js"></script>
+    <style type="text/css">
+        body {
+            margin: 0;
+        }
+        #title-div {
+            width: 1191px;
+            overflow: hidden;
+            text-align: center;
+        }
+        #oldTownRoad {
+            visibility: hidden;
+            height: 0px;
+            width: 0px;
+            margin: 0px;
+            margin-bottom: -3em;
+            padding-bottom: -3em;
+            padding: 0px;
+        }
+    </style>
+</head>
 <body>
 
-<button onclick="startGame();">START GAME</button><br>
+<div id="title-div">
+  <p><strong>OldTownRoadJS</strong><button onclick="playMusic();">PLAY MUSIC</button></p>
+</div>
 
 <audio id="oldTownRoad" controls>
   <source src="oldtownroad.mp3" type="audio/mpeg">
 </audio> 
 
-<script>
+<script type="text/javascript">
+    // REFERENCE (Official Phaser Tutorial Source Code): https://github.com/topherPedersen/OfficialPhaser3Tutorial
 
-// REFERENCE (Fast-Forward): https://www.w3schools.com/tags/av_prop_currenttime.asp
-var mp3 = document.getElementById("oldTownRoad");
-mp3.currentTime = 9; // start mp3 at 9 seconds into song
+    var config = {
+        type: Phaser.AUTO,
+        width: 1191,
+        height: 892,
+        physics: {
+            default: 'arcade',
+            arcade: {
+                gravity: {y: 300},
+                debug: false             
+            }   
+        },
+        scene: {
+            preload: preload,
+            create: create,
+            update: update
+        }
+    };
 
-function startGame() {
-    mp3.play();
-}
+    var game = new Phaser.Game(config);
+    
+    // Game Variables
+    var cursors;
+  
 
+
+    function preload () {
+        this.load.image('sky', 'assets/MarioDesertSky.png');
+        this.load.image('ground', 'assets/MarioDesertGround.png');
+    }
+
+    function create () {
+        // Add Sky
+        this.add.image(595.5, 446, 'sky');
+
+        platforms = this.physics.add.staticGroup();
+        platforms.create(595.5, 855, 'ground').setScale(1).refreshBody();
+    
+    }  
+
+    // Main Game Loop
+    function update () {
+         
+    }
+
+    function playMusic() {
+        // REFERENCE (Fast-Forward): https://www.w3schools.com/tags/av_prop_currenttime.asp
+        var mp3 = document.getElementById("oldTownRoad");
+        mp3.play();
+    }
+   
+            
 </script>
+
 </body>
 </html>
